@@ -9,9 +9,9 @@ from email.Utils import formatdate
 from email import Encoders
 from arcpy import env
 
-env.workspace = "Database Connections/MOBILE_EDIT_VERSION_TESTDB.sde"
+env.workspace = "Database Connections/RPUD_TRANSDB.sde"
 # output directory
-outDir = "C:/data/" #Change this path if necessary
+outDir = "//corfile/Public_Utilities_NS/5215_Capital_Improvement_Projects/636_Geographic_Info_System/Joe" #Change this path if necessary
 
 # related table and fields information
 # Gravity Main
@@ -132,13 +132,13 @@ message += "\n\nThanks,\n"
 message += "PUGIS"
 
 # email to send in test
-to = "joe.li@raleighnc.gov"
+# to = "joe.li@raleighnc.gov"
 cc = ""
-bcc = ""
+# bcc = ""
 # email to send in production
-# to = "jeffrey.bognar@raleighnc.gov"
+to = "jeffrey.bognar@raleighnc.gov"
 # cc = "david.jackson@raleighnc.gov, chris.mosley@raleighnc.gov, dustin.tripp@raleighnc.gov" #tom.johnson@raleighnc.gov" ## email copy list
-# bcc = "joe.li@raleighnc.gov" #to notify GIS team 
+bcc = "joe.li@raleighnc.gov" #to notify GIS team 
 # message to print
 isAttach = True
 print 'Formatting email...'

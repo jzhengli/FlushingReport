@@ -7,6 +7,8 @@ from email.MIMEText import MIMEText
 from email.Utils import formatdate
 from email import Encoders
 from arcpy import env
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 
 env.workspace = "Database Connections/RPUD_TESTDB.sde"
 # output directory
@@ -101,8 +103,10 @@ def exportToCSV(field_alias, field_names, table, outFile, outDir):
 							field_val = (row.getValue(field.name) - datetime.timedelta(hours=4)).strftime("%Y-%m-%d %H:%M:%S")
 						# if field.name == "REPORT_DATE":
 						# 	field_val = (row.getValue(field.name) - datetime.timedelta(hours=4)).strftime("%Y-%m-%d")
-					else:
-						field_val = row.getValue(field.name)
+					field_val = row.getValue(field.name)
+					if isinstance(field_val, unicode):
+						field_val = field_val.encode('utf-8') # handle utf characters
+					# print field_val
 					field_vals.append(field_val)
 			w.writerow(field_vals)
 		del row
@@ -127,13 +131,13 @@ message += "\n\nThanks,\n"
 message += "PUGIS"
 
 # email to send in test
-# to = "joe.li@raleighnc.gov"
-# cc = ""
-# bcc = ""
+to = "joe.li@raleighnc.gov"
+cc = ""
+bcc = ""
 # email to send in production
-to = "jeffrey.bognar@raleighnc.gov"
-cc = "david.jackson@raleighnc.gov, chris.mosley@raleighnc.gov, dustin.tripp@raleighnc.gov" #tom.johnson@raleighnc.gov" ## email copy list
-bcc = "joe.li@raleighnc.gov" #to notify GIS team 
+# to = "jeffrey.bognar@raleighnc.gov"
+# cc = "david.jackson@raleighnc.gov, chris.mosley@raleighnc.gov, dustin.tripp@raleighnc.gov" #tom.johnson@raleighnc.gov" ## email copy list
+# bcc = "joe.li@raleighnc.gov" #to notify GIS team 
 # message to print
 isAttach = True
 print 'Formatting email...'

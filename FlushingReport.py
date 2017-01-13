@@ -23,7 +23,7 @@ def logMessage(msg):
 ##export report to excel
 def ExportReport(table, delta_date):
 	env.overwriteOutput = True
-	env.workspace = "Database Connections/RPUD_TESTDB - MOBILE_EDIT_VERSION.sde"
+	env.workspace = "Database Connections/RPUD_TRANSDB.sde"
 	#env.workspace = os.path.join(os.path.dirname(sys.argv[0]), "RPUD_TESTDB - MOBILE_EDIT_VERSION.sde") #the name of database connection may need to be changed when in production
 
 	#convert local time to UTC for query
